@@ -1,0 +1,148 @@
+@-webkit-keyframes bugfix {
+  from {
+    padding: 0
+  }
+  to {
+    padding: 0
+  }
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box
+}
+
+html, body {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-animation: bugfix infinite 1s
+}
+
+html, body, div, span, cite, code, figure,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+small, sub, sup, b, i, a, ol, ul, li, footer,
+fieldset, form, label, legend,
+table, caption, tr, th, td,
+audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  background: transparent
+}
+
+b {
+  font-weight: bold
+}
+
+i {
+  font-style: italic
+}
+
+input, textarea, select {
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  line-height: normal;
+}
+
+input, select {
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-shadow: none;
+
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  }
+}
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+  &::-webkit-search-cancel-button, &::-webkit-search-decoration {
+    -webkit-appearance: none
+  }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+audio, video {
+  display: inline-block
+}
+
+sup {
+  vertical-align: text-top
+}
+
+sub {
+  vertical-align: text-bottom
+}
+
+img {
+  border: 0;
+  vertical-align: middle
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  padding: 0;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  border-top: 1px solid #cccccc;
+  margin: 1em 0
+}
+
+textarea {
+  overflow: auto;
+  vertical-align: top
+}
+
+:focus {
+  outline: none
+}
+
+::-webkit-input-placeholder {
+  opacity: 1 !important;
+}
+
+:-moz-placeholder {
+  opacity: 1 !important;
+}
+
+::-moz-placeholder {
+  opacity: 1 !important;
+}
+
+:-ms-input-placeholder {
+  opacity: 1 !important;
+}
+
+::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}

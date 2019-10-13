@@ -1,0 +1,13 @@
+{
+  "presets": [
+    "@babel/preset-react",
+    "@babel/preset-env"
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true}],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    "@babel/plugin-transform-spread",
+    "@babel/plugin-transform-object-assign",
+    "babel-plugin-transform-es2017-object-entries"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "outputJs":     "js/",
+  "outputStyle":  "css/",
+  "outputImages": "img/",
+  "outputFonts":  "fonts/"
+}
