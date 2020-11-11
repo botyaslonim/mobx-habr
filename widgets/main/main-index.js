@@ -18,15 +18,15 @@ require("es6-object-assign").polyfill();
 require( "./static/less/main.less");
 
 const stores = {
-    mainStore,
-    optionsStore,
-    ButtonStore : mainStore.ButtonStore,    
-    FioStore : mainStore.FioStore,
-    EmailStore : mainStore.EmailStore
+  mainStore,
+  optionsStore,
+  ButtonStore : mainStore.ButtonStore,
+  FioStore : mainStore.FioStore,
+  EmailStore : mainStore.EmailStore
 };
 
 ReactDOM.render((
-    <Provider {...stores}>
-        <App />
-    </Provider>
+  <Provider {...stores}>
+    <App />
+  </Provider>
 ), document.getElementById('reactContainer'));

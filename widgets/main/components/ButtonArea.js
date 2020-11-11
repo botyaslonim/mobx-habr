@@ -13,20 +13,20 @@ import Button from "./Button";
 @observer
 export default class ButtonArea extends React.Component {
 
-    constructor(props) {
-        super(props);        
-    };      
+  constructor(props) {
+    super(props);
+  };
 
-    render() {
-        return (            
-            <div className="button-container">                
-                <p>{this.props.optionsStore.OPTIONS.buttonsHeading}</p>
-                <Button 
-                    name={"send_data"}  
-                    disabled={this.props.mainStore.buttons.sendData.disabled ? true : false}
-                    text={l10n.ru.common.continue}                                         
-                /> 
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="button-container">
+        <p>{this.props.optionsStore.OPTIONS.buttonsHeading}</p>
+        <Button
+          name={"send_data"}
+          disabled={this.props.mainStore.buttons.sendData.disabled ? true : false}
+          text={l10n.ru.common.continue}
+        />
+      </div>
+    );
+  }
 }

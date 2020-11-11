@@ -12,57 +12,68 @@ import {get} from 'mobx';
 @observer
 export default class Fio extends React.Component {
 
-    constructor(props) {
-        super(props);        
-    };  
+  constructor(props) {
+    super(props);
+  };
 
-    componentDidMount = () => {
-        /**
-         * Обязательная регистрация компонента с параметрами вызова
-         */
-        this.props.FioStore.registration(this.props);
-    };
+  componentDidMount = () => {
+    /**
+      * Обязательная регистрация компонента с параметрами вызова
+    */
+    this.props.FioStore.registration(this.props);
+  };
 
-    componentWillUnmount = () => {
-        this.props.FioStore.unmount(this.props.name);
-    };
+  componentWillUnmount = () => {
+    this.props.FioStore.unmount(this.props.name);
+  };
 
-    render() {
+  render() {
 
-        /**
-         * Подсказки берутся соответственно типу запрашиваемых данных
-         * Для DaData:
-         * data.surname - Фамилия
-         * data.name - Имя        
-         * https://dadata.ru/api/suggest/name
-         */
-        const FioStore = this.props.FioStore;
-        const name = this.props.name;
-        const item = get(FioStore.items, name);   
-        if (item && item.isCorrect && item.onceValidated && !item.prevalidated) status = "valid";
-        if (item && item.isWrong && item.onceValidated) status = "error";
-        // до регистрации в store 
-        let value = this.props.value;
-        if (item) value = item.value;        
+    /**
+     * Подсказки берутся соответственно типу запрашиваемых данных
+     * Для DaData:
+     * data.surname - Фамилия
+     * data.name - Имя
+     * https://dadata.ru/api/suggest/name
+    */
+    const {
+      disabled,
+      FioStore,
+      label,
+      name,
+      value,
+    } = this.props;
 
-        return (            
-            <div className="form-group fio">                
-                <label htlmfor={name}>{this.props.label}</label>          
-                <input
-                    type="text"                                               
-                    disabled={this.props.disabled}
-                    name={name}
-                    id={name}
-                    value={value}                     
-                    onChange={(e) => FioStore.bindData(e, name)}                                                                
-                />                
-                {(item && item.suggestions && item.suggestions.length > 0) && <div className="hint-container" id={"hint-container-" + item.id}>{item.suggestions.map((suggestion, i) => {
-                    return (
-                        <div className={"suggestion-item fs-" + i} key={i} value={suggestion.data[name]} onClick={(e) => FioStore.setSuggestion(e, name)}>
-                            <span className="suggestion-text">{suggestion.data[name]}</span>
-                        </div>)
-                })}</div>}
-            </div>
-        );
+    const item = get(FioStore.items, name);
+    if (item && item.isCorrect && item.onceValidated && !item.prevalidated) status = "valid";
+    if (item && item.isWrong && item.onceValidated) status = "error";
+    // до регистрации в store
+    let _value = "";
+    if (item) {
+      _value = item.value;
     }
+
+    return (
+      <div className="form-group fio">
+        <label htlmfor={name}>{label}</label>
+        <input
+          type="text"
+          disabled={disabled}
+          name={name}
+          id={name}
+          value={_value}
+          onChange={(e) => FioStore.bindData(e, name)}
+        />
+        {(item && item.suggestions && item.suggestions.length > 0) &&
+          <div className="hint-container" id={"hint-container-" + item.id}>{item.suggestions.map((suggestion, i) => {
+            return (
+              <div className={"suggestion-item fs-" + i} key={i} value={suggestion.data[name]} onClick={(e) => FioStore.setSuggestion(e, name)}>
+                <span className="suggestion-text">{suggestion.data[name]}</span>
+              </div>)
+            })}
+          </div>
+        }
+      </div>
+    );
+  }
 }
