@@ -25,7 +25,9 @@ export default class ButtonStore {
    */
   @action registration = (params) => {
     const nameExists = get(this.items, params.name);
-    if (!blockValidate({params, nameExists, type: "Button"})) return false;
+    if (!blockValidate({params, nameExists, type: "Button"})) {
+      return false;
+    }
     // расширяем items новым объектом
     const value = {
       disabled : params.disabled,

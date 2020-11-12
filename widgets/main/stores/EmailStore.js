@@ -33,15 +33,21 @@ export default class EmailStore {
   @action validate = (name) => {
     const callbacks = {
       success : (formatedValue) => {
-        this.params.value = formatedValue;
-        this.params.isCorrect = true;
-        this.params.isWrong = false;
-        this.params.onceValidated = true;
+        this.params = {
+          ...this.params,
+          value: formatedValue,
+          isCorrect: true,
+          isWrong: false,
+          onceValidated: true,
+        }
       },
       fail : (formatedValue) => {
-        this.params.value = formatedValue;
-        this.params.isCorrect = false;
-        this.params.isWrong = true;
+        this.params = {
+          ...this.params,
+          value: formatedValue,
+          isCorrect: false,
+          isWrong: true,
+        }
       }
     };
     const options = {

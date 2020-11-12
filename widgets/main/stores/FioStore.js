@@ -18,28 +18,12 @@ import {
 } from "../../../helpers/functions";
 import {
   getAttrValue,
-  scrollToElement,
   getTarget
 } from "../../../helpers/elementaries";
 
 export default class FioStore {
 
-  constructor() {
-    autorun(() => {
-      /**
-       * Клик по любому полю для закрытия окна подсказок. Клик по самому полю подсказок обрабатывается отдельно в setSuggestion()
-       */
-      const self = this;
-      $("body").click((e) => {
-        if (e.target.className !== "suggestion-item" && e.target.className !== "suggestion-text") {
-          const items = self.items.entries();
-          for (var [key, value] of items) {
-            value.suggestions = [];
-          }
-        }
-      });
-    })
-  }
+  constructor() {}
 
   /**
    * В объект items записываются данные каждого из экзепляров компонента Fio при их создании

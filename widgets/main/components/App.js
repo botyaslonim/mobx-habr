@@ -31,18 +31,18 @@ export default class App extends React.Component {
           label={profile.name}
           name={"name"}
           value={userData.name}
-          daData={true}
+          daData={false}
         />
         <Fio
-          label={profile.surname}
-          name={"surname"}
-          value={userData.surname}
-          daData={true}
+          label={profile.patronymic}
+          name={"patronymic"}
+          value={userData.patronymic}
+          daData={false}
         />
         <Email
           label={profile.email}
-          name={"email"}
-          value={userData.email}
+          name={"userEmail"}
+          value={userData.userEmail}
         />
         <ButtonArea />
       </div>

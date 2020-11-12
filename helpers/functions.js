@@ -12,25 +12,25 @@ require("isomorphic-fetch");
  *  - callbacks.fail {Function}
  */
 export function fetchOrdinary(url, request, callbacks) {
-    fetch(url, {
-        method : "POST",
-        headers : {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        body : request
+  fetch(url, {
+    method : "POST",
+    headers : {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body : request
+  })
+    .then((response) => {
+      return response.json();
     })
-        .then((response) => {
-            return response.json();
-        })
-        .then((response) => {
-            if (response.code !== undefined && response.code == "0") {
-                callbacks.success(response);
-            } else {
-                callbacks.fail(response);
-            }
-        })
-        .catch(() => callbacks.fail())
+    .then((response) => {
+      if (response.code !== undefined && response.code == "0") {
+        callbacks.success(response);
+      } else {
+        callbacks.fail(response);
+      }
+    })
+    .catch(() => callbacks.fail())
 }
 
 
@@ -41,50 +41,49 @@ export function fetchOrdinary(url, request, callbacks) {
  * @param type {String} - тип поля (ФИО, email)
  */
 export function getDaData({value, type, name}) {
-    let url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/";
-    switch (type) {
-            case "fio" :
-                url += "fio";
-                break;
-            case "email" :
-                url += "email";
-                break;
-            case "address" :
-                url += "address";
-                break;
-            default : break
-
-        }
-    return fetch(url, {
-        method : "POST",
-        headers : {
-            "Authorization" : "Token e6d64244d04bf418dbd4074bae9e164432caf12d",
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        body : JSON.stringify({
-            query : value,
-            parts : [name]
-        })
+  let url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/";
+  switch (type) {
+    case "fio" :
+      url += "fio";
+      break;
+    case "email" :
+      url += "email";
+      break;
+    case "address" :
+      url += "address";
+      break;
+    default : break
+  }
+  return fetch(url, {
+    method : "POST",
+    headers : {
+      "Authorization" : "Token e6d64244d04bf418dbd4074bae9e164432caf12d",
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body : JSON.stringify({
+      query : value,
+      parts : [name]
     })
-        .then((response) => {
-            return response.json();
-        })
-        .catch((error) => {console.log(error)})
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => {console.log(error)})
 }
 
 
 /**
  * Проверка входных данных для типового переиспользуемого блока
  */
-export function blockValidate(data) {       
-    if (!data.params.name) {
-        console.error("Компонент " + data.type + ": отcутствует обязательный параметр [name]");
-        return false
-    }
-    if (data.nameExists) {
-        console.error("Компонент " + data.type + ": экземпляр с таким [name] уже существует");
-        return false
-    }    
-    return true
+export function blockValidate(data) {
+  if (!data.params.name) {
+    console.error("Компонент " + data.type + ": отcутствует обязательный параметр [name]");
+    return false
+  }
+  if (data.nameExists) {
+    console.error("Компонент " + data.type + ": экземпляр с таким [name] уже существует");
+    return false
+  }
+  return true
 }

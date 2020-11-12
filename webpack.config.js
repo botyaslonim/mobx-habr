@@ -116,7 +116,7 @@ module.exports = {
         new webpack.BannerPlugin({
             banner   : '@env ' + (process.env.NODE_ENV || 'unknown') + ':' + pkg.version,
             entryOnly: true
-        })       
+        })
     ],
 
     resolve: {

@@ -19,10 +19,6 @@ export default class Email extends React.Component {
     this.props.EmailStore.validate(this.props.name);
   };
 
-  componentWillUnmount = () => {
-    this.props.EmailStore.unmount(this.props.name);
-  };
-
   render() {
     const {
       disabled,
@@ -30,11 +26,25 @@ export default class Email extends React.Component {
       label,
       name,
     } = this.props;
-    const { params } = EmailStore;
+    const {
+      bindData,
+      params: {
+        isCorrect,
+        isWrong,
+        onceValidated,
+        value,
+      }
+    } = EmailStore;
 
     let status = "form-group email ";
-    if (params.isCorrect && params.onceValidated) status += "valid";
-    if (params.isWrong && params.onceValidated) status += "error";
+    if (onceValidated) {
+      if (isCorrect) {
+        status += "valid";
+      }
+      if (isWrong) {
+        status += "error";
+      }
+    }
 
     return (
       <div className={status}>
@@ -44,8 +54,8 @@ export default class Email extends React.Component {
           disabled={disabled}
           name={name}
           id={name}
-          value={params.value}
-          onChange={(e) => EmailStore.bindData(e, name)}
+          value={value}
+          onChange={(e) => bindData(e, name)}
         />
       </div>
     );

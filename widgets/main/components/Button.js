@@ -28,6 +28,7 @@ export default class CustomButton extends React.Component {
 
   render() {
     const {
+      ButtonStore,
       disabled,
       name,
       text,
@@ -37,7 +38,7 @@ export default class CustomButton extends React.Component {
       <div className="form-group button">
         <button
           disabled={disabled}
-          onClick={(e) => this.props.ButtonStore.bindClick(e, name)}
+          onClick={(e) => ButtonStore.bindClick(e, name)}
           name={name}
           id={name}
         >{text}</button>

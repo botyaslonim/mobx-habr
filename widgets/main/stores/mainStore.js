@@ -86,7 +86,7 @@ class mainStore {
               JSON.stringify(request),
               {
                 success: authRequestSuccess,
-                fail: authRequestFail
+                fail: authRequestFail,
               }
             );
           }
@@ -97,13 +97,13 @@ class mainStore {
 
   @observable userData = {
     name : "",
-    surname : "",
-    email : ""
+    patronymic : "",
+    user_email : "",
   };
 
   @observable buttons = {
     sendData : {
-      disabled : true
+      disabled : true,
     }
   };
 
@@ -115,8 +115,8 @@ class mainStore {
   componentsMap = {
     userData : [
       ["name", "fio"],
-      ["surname", "fio"],
-      ["email", "email"],
+      ["patronymic", "fio"],
+      ["user_email", "email"],
       ["send_data", "button"],
     ]
   };
@@ -169,14 +169,12 @@ class mainStore {
     const mappedResult = {
       fio : {},
       email : {
-        email : {},
+        user_email : {},
       }
     };
 
-    const {
-      items,
-      params,
-    } = this.FioStore;
+    const { items } = this.FioStore;
+    const { params } = this.EmailStore;
 
     if (items) {
       this.listenerBlocks.userData.fio.forEach((item) => {
@@ -184,17 +182,17 @@ class mainStore {
         if (i) {
           mappedResult.fio[item] = {
             isCorrect : i.isCorrect,
-            value : i.value
+            value : i.value,
           }
         }
       })
     }
 
     if (params) {
-      mappedResult.email.email = {
+      mappedResult.email.user_email = {
         isCorrect : params.isCorrect,
         prevalidated : params.prevalidated,
-        value : params.value
+        value : params.value,
       }
     }
 
