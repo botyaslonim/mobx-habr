@@ -116,6 +116,7 @@ class mainStore {
     userData : [
       ["name", "fio"],
       ["patronymic", "fio"],
+      ["surname", "fio"],
       ["user_email", "email"],
       ["send_data", "button"],
     ]

@@ -39,6 +39,12 @@ export default class App extends React.Component {
           value={userData.patronymic}
           daData={false}
         />
+        <Fio
+          label={profile.surname}
+          name={"surname"}
+          value={userData.surname}
+          daData={false}
+        />
         <Email
           label={profile.email}
           name={"userEmail"}
